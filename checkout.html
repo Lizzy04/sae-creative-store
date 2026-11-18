@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | SAE Creative Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Checkout Header -->
+    <header>
+    <div class="header-brand">
+        <img src="images/sae-logo.png" alt="SAE Institute Logo" class="sae-logo">
+
+        <div>
+            <h1 class="logo">SAE <span>CREATIVE STORE</span></h1>
+            <p>Creativity You Can Wear.</p>
+        </div>
+    </div>
+</header>
+
+    <!-- Checkout Section -->
+    
+<section class="checkout-section">
+    <h2>Checkout</h2>
+    <a href="index.html" class="back-to-store">
+    ← Back to Store
+</a>
+    <p>Please enter your details to complete your order.</p>
+
+    <form id="checkout-form">
+
+        <h3>Customer Details</h3>
+
+        <label for="customer-name">Full Name</label>
+        <input type="text" id="customer-name" name="customer-name" required>
+
+        <label for="customer-email">Email Address</label>
+        <input type="email" id="customer-email" name="customer-email" required>
+
+        <label for="customer-phone">Contact Number</label>
+        <input type="tel" id="customer-phone" name="customer-phone" required>
+
+
+<h3>Delivery Method</h3>
+
+<label for="delivery-method">How would you like to receive your order?</label>
+
+<select id="delivery-method" name="delivery-method" required>
+    <option value="">Please select</option>
+    <option value="delivery">Home Delivery</option>
+    <option value="collection">Campus Collection</option>
+</select>
+
+<div id="delivery-address" hidden>
+
+    <h3>Delivery Address</h3>
+
+    <label for="street-address">Street Address</label>
+    <input type="text" id="street-address" name="street-address">
+
+    <label for="suburb">Suburb</label>
+    <input type="text" id="suburb" name="suburb">
+
+    <label for="city">City</label>
+    <input type="text" id="city" name="city">
+
+    <label for="postal-code">Postal Code</label>
+    <input type="text" id="postal-code" name="postal-code">
+
+</div>
+
+<!-- Order Summary -->
+<div class="order-summary">
+
+    <h3>Order Summary</h3>
+
+    <div id="checkout-items">
+        <p>Your order will appear here.</p>
+    </div>
+
+    <h3 id="checkout-total">Total: R0.00</h3>
+
+</div>
+<!-- Place Order Button -->
+<button type="submit" class="place-order-button">
+    Place Order
+</button>
+    </form>
+</section>
+
+<script src="checkout.js"></script>
+</body>
+</html>

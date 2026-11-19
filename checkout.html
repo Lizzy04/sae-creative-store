@@ -44,33 +44,27 @@
         <input type="tel" id="customer-phone" name="customer-phone" required>
 
 
-<h3>Delivery Method</h3>
 
-<label for="delivery-method">How would you like to receive your order?</label>
+<h3>Collection Method</h3>
 
-<select id="delivery-method" name="delivery-method" required>
-    <option value="">Please select</option>
-    <option value="delivery">Home Delivery</option>
-    <option value="collection">Campus Collection</option>
-</select>
+<p>All orders must be collected on campus.</p>
 
-<div id="delivery-address" hidden>
+<input type="hidden" id="delivery-method" name="delivery-method" value="collection">
 
-    <h3>Delivery Address</h3>
+<h3>Payment Method</h3>
 
-    <label for="street-address">Street Address</label>
-    <input type="text" id="street-address" name="street-address">
+<p>Please select how you would like to pay:</p>
 
-    <label for="suburb">Suburb</label>
-    <input type="text" id="suburb" name="suburb">
+<label class="payment-option">
+    <input type="radio" name="payment-method" value="eft" required>
+    Online EFT Payment
+</label>
 
-    <label for="city">City</label>
-    <input type="text" id="city" name="city">
+<label class="payment-option">
+    <input type="radio" name="payment-method" value="campus">
+    Pay on campus upon collection
+</label>
 
-    <label for="postal-code">Postal Code</label>
-    <input type="text" id="postal-code" name="postal-code">
-
-</div>
 
 <!-- Order Summary -->
 <div class="order-summary">

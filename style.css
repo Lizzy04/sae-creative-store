@@ -228,7 +228,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    max-width: 850px;
+    max-width: 900px;
     margin: auto;
 }
 
@@ -238,6 +238,7 @@ footer {
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-card:hover {
@@ -256,7 +257,7 @@ footer {
 }
 
 .product-info {
-    padding: 25px;
+    padding: 20px;
 }
 
 .product-info h3 {
@@ -582,7 +583,7 @@ footer {
     margin-bottom: 8px;
 }
 
-#checkout-form input {
+#checkout-form input:not([type="radio"]) {
     width: 100%;
     padding: 13px;
     margin-bottom: 22px;
@@ -783,4 +784,20 @@ footer {
 .header-brand > div {
     flex: 1;
     text-align: center;
+}
+
+/* Payment option alignment */
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.payment-option input[type="radio"] {
+    display: inline-block;
+    width: auto;
+    flex: 0 0 auto;
+    margin: 0;
+    vertical-align: middle;
 }

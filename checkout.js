@@ -1,33 +1,3 @@
-// Select the delivery method dropdown
-const deliveryMethod = document.querySelector("#delivery-method");
-
-// Select the delivery address section
-const deliveryAddress = document.querySelector("#delivery-address");
-
-// Listen for changes to the delivery method
-deliveryMethod.addEventListener("change", function() {
-
-    const addressFields = deliveryAddress.querySelectorAll("input");
-
-    if (deliveryMethod.value === "delivery") {
-
-        deliveryAddress.hidden = false;
-
-        addressFields.forEach(function(field) {
-            field.required = true;
-        });
-
-    } else {
-
-        deliveryAddress.hidden = true;
-
-        addressFields.forEach(function(field) {
-            field.required = false;
-        });
-
-    }
-
-});
 // Get the saved shopping cart
 const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
 
@@ -73,8 +43,14 @@ checkoutForm.addEventListener("submit", function(event) {
     }
 
     // Save a copy of the order for the confirmation page
-localStorage.setItem("confirmedOrder", JSON.stringify(shoppingCart));
+// Get the selected payment method
+const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
 
+// Save the selected payment method
+localStorage.setItem("paymentMethod", selectedPayment.value);
+
+// Save a copy of the order for the confirmation page
+localStorage.setItem("confirmedOrder", JSON.stringify(shoppingCart));
 // Open the order confirmation page
 window.location.href = "order-confirmation.html";
 

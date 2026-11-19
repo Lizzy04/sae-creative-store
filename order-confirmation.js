@@ -4,6 +4,7 @@ const confirmedOrder = JSON.parse(localStorage.getItem("confirmedOrder")) || [];
 // Select the order summary elements
 const confirmedItems = document.querySelector("#confirmed-items");
 const confirmedTotal = document.querySelector("#confirmed-total");
+const confirmedPayment = document.querySelector("#confirmed-payment");
 
 // Start with an empty total
 let total = 0;
@@ -28,6 +29,14 @@ if (confirmedOrder.length === 0) {
 
     // Display the final total
     confirmedTotal.textContent = `Total: R${total.toFixed(2)}`;
+    // Display the selected payment method
+const paymentMethod = localStorage.getItem("paymentMethod");
+
+if (paymentMethod === "eft") {
+    confirmedPayment.textContent = "Payment Method: Online EFT Payment";
+} else if (paymentMethod === "campus") {
+    confirmedPayment.textContent = "Payment Method: Pay on campus upon collection";
+}
 }
 // Clear the shopping cart after confirmation
 localStorage.removeItem("shoppingCart");

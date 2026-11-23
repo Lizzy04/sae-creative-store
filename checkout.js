@@ -31,7 +31,8 @@ checkoutTotal.textContent = `Total: R${total.toFixed(2)}`;
 // Handle checkout form submission
 const checkoutForm = document.querySelector("#checkout-form");
 
-checkoutForm.addEventListener("submit", function(event) {
+
+checkoutForm.addEventListener("submit", async function(event) {
 
     // Prevent the page from refreshing
     event.preventDefault();
@@ -42,9 +43,47 @@ checkoutForm.addEventListener("submit", function(event) {
         return;
     }
 
- // Save a copy of the order for the confirmation page
-localStorage.setItem("confirmedOrder", JSON.stringify(shoppingCart));
-// Open the order confirmation page
-window.location.href = "order-confirmation.html";
+    // Prepare the order details
+    const orderDetailsField = document.querySelector("#order-details");
+
+    const orderDetails = shoppingCart.map(function(item) {
+        const subtotal = item.price * item.quantity;
+
+        return `${item.name} | Size: ${item.size} | Quantity: ${item.quantity} | Subtotal: R${subtotal.toFixed(2)}`;
+    }).join("\n");
+
+    const total = shoppingCart.reduce(function(sum, item) {
+        return sum + (item.price * item.quantity);
+    }, 0);
+
+    orderDetailsField.value = orderDetails + `\nOrder Total: R${total.toFixed(2)}`;
+
+    try {
+
+        // Send the order to Netlify
+        const formData = new FormData(checkoutForm);
+
+        const response = await fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams(formData).toString()
+        });
+
+        if (!response.ok) {
+            throw new Error("Order submission failed.");
+        }
+
+        // Save a copy of the order for the confirmation page
+        localStorage.setItem("confirmedOrder", JSON.stringify(shoppingCart));
+
+        // Open the order confirmation page
+        window.location.href = "order-confirmation.html";
+
+    } catch (error) {
+        alert("Sorry, your order could not be submitted. Please try again.");
+        console.error("Order submission error:", error);
+    }
 
 });

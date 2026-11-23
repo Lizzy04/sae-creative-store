@@ -42,14 +42,7 @@ checkoutForm.addEventListener("submit", function(event) {
         return;
     }
 
-    // Save a copy of the order for the confirmation page
-// Get the selected payment method
-const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
-
-// Save the selected payment method
-localStorage.setItem("paymentMethod", selectedPayment.value);
-
-// Save a copy of the order for the confirmation page
+ // Save a copy of the order for the confirmation page
 localStorage.setItem("confirmedOrder", JSON.stringify(shoppingCart));
 // Open the order confirmation page
 window.location.href = "order-confirmation.html";

@@ -29,14 +29,8 @@ if (confirmedOrder.length === 0) {
 
     // Display the final total
     confirmedTotal.textContent = `Total: R${total.toFixed(2)}`;
-    // Display the selected payment method
-const paymentMethod = localStorage.getItem("paymentMethod");
-
-if (paymentMethod === "eft") {
-    confirmedPayment.textContent = "Payment Method: Online EFT Payment";
-} else if (paymentMethod === "campus") {
-    confirmedPayment.textContent = "Payment Method: Pay on campus upon collection";
-}
-}
+    // Display the payment method
+confirmedPayment.textContent = "Payment Method: Pay on campus upon collection";
 // Clear the shopping cart after confirmation
 localStorage.removeItem("shoppingCart");
+}

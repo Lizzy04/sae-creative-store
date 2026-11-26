@@ -10,6 +10,7 @@ let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
 
 // Find the cart counter in the navigation bar
 const cartCountDisplay = document.querySelector("#cart-count");
+
 // Find the shopping cart display area
 const cartItemsDisplay = document.querySelector("#cart-items");
 
@@ -21,43 +22,53 @@ cartButtons.forEach(function(button) {
         const productName = button.dataset.product;
         const productPrice = Number(button.dataset.price);
 
-        // Find the size dropdown for this product
+        // Find the product card
         const productCard = button.closest(".product-card");
+
+        // Check whether this product has a size dropdown
         const sizeSelect = productCard.querySelector(".size-select");
 
-        const selectedSize = sizeSelect.value;
+        let selectedSize = "";
 
-        // Check whether a size has been selected
-        if (selectedSize === "") {
+        if (sizeSelect) {
 
-            alert("Please select a size before adding this product to your cart.");
+            selectedSize = sizeSelect.value;
 
-        } else {
+            if (selectedSize === "") {
+                alert("Please select a size before adding this product to your cart.");
+                return;
+            }
 
-            // Create a product object
-           const cartItem = {
-             name: productName,
-             size: selectedSize,
-             price: productPrice,
-             quantity: 1
-           };
+        }
 
-            // Add the product to the shopping cart
-            shoppingCart.push(cartItem);
-            // Save the shopping cart in the browser
-localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+        // Create a product object
+        const cartItem = {
+            name: productName,
+            size: selectedSize,
+            price: productPrice,
+            quantity: 1
+        };
 
-                    
-            // Refresh the shopping cart display
-            displayCart();
+        // Add the product to the shopping cart
+        shoppingCart.push(cartItem);
 
+        // Save the shopping cart in the browser
+        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+
+        // Refresh the shopping cart display
+        displayCart();
+
+        // Show confirmation
+        if (selectedSize !== "") {
             alert(productName + " (Size: " + selectedSize + ") added to your cart!");
-
+        } else {
+            alert(productName + " added to your cart!");
         }
 
     });
 
 });
+
 
 
 function displayCart() {

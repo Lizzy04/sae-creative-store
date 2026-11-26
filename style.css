@@ -801,3 +801,12 @@ footer {
     margin: 0;
     vertical-align: middle;
 }
+
+
+/* Featured publication card */
+.publication-card {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 420px;
+    justify-self: center;
+}
